@@ -1,12 +1,12 @@
 센서에서 측정한 데이터를 서버로 전송하고, Node.js 서버가 MySQL 데이터베이스에 자동 저장하는 센서 수집 모듈
 
-구현할 센서 항목
+1. 구현할 센서 항목
 1. 온도(temperature): 온실 내부 온도
 2. 습도(humidity): 온실 내부 상대습도
 3. 조도(light_intensity): 온실 내부 빛의 세기
 4. 토양 수분(soil_moisture): 재배 배지 또는 토양의 수분 상태
 
-프로젝트 폴더 구조
+2. 프로젝트 폴더 구조
 smartfarm/
 │
 ├── server.js
