@@ -1,0 +1,22 @@
+const express = require('express');
+const router = express.Router();
+
+const sensorController = require('../controllers/sensorController');
+
+// 센서 데이터 저장
+// POST /api/sensor
+
+router.post(
+    '/',
+    sensorController.saveSensorData
+);
+
+// 최근 센서 데이터 조회
+// GET /api/sensor/:greenhouse_id
+
+router.get(
+    '/:greenhouse_id',
+    sensorController.getSensorData
+);
+
+module.exports = router;
