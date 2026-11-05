@@ -1,0 +1,21 @@
+서버에 저장된 데이터를 다시 가져오기
+
+요청주소:
+GET http://localhost:3000/api/sensor/1
+
+예상 응답:
+
+{
+    "success": true,
+    "count": 1,
+    "data": [
+        {
+            "sensor_data_id": 1,
+            "greenhouse_id": 1,
+            "temperature": "25.50",
+            "humidity": "65.00",
+            "light_intensity": "12000.00",
+            "soil_moisture": "42.00"
+        }
+    ]
+}
