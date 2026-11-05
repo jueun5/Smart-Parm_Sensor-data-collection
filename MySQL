@@ -1,0 +1,18 @@
+
+USE smartfarm_db;
+
+CREATE TABLE IF NOT EXISTS sensor_data (
+    sensor_data_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    greenhouse_id INT NOT NULL,
+    temperature DECIMAL(5,2),
+    humidity DECIMAL(5,2),
+    light_intensity DECIMAL(10,2),
+    soil_moisture DECIMAL(5,2),
+    measured_at DATETIME NOT NULL,
+
+    CONSTRAINT fk_sensor_greenhouse
+        FOREIGN KEY (greenhouse_id)
+        REFERENCES greenhouses(greenhouse_id),
+
+    INDEX idx_sensor_time (greenhouse_id, measured_at)
+);
