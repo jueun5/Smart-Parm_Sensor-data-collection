@@ -1,0 +1,64 @@
+실제 센서를 연결하기 전에 Postman이나 PowerShell을 사용하여 테스트
+먼저 MySQL에 온실 데이터가 있는지 확인
+
+SELECT * FROM greenhouses;
+
+데이터가 없다면 테스트용 온실을 등록
+
+INSERT INTO greenhouses (
+    greenhouse_name,
+    location,
+    area_m2
+)
+VALUES (
+    '제1 스마트팜 온실',
+    '테스트 온실',
+    100.00
+);
+
+이제 Postman을 실행하고 다음과 같이 설정
+POST
+**http://localhost:3000/api/sensor**
+
+Body → raw → JSON
+
+
+{
+    "greenhouse_id": 1,
+    "temperature": 25.5,
+    "humidity": 65.0,
+    "light_intensity": 12000,
+    "soil_moisture": 42.0
+}
+
+예상 응답
+
+
+{
+    "success": true,
+    "message": "센서 데이터가 저장되었습니다.",
+    "sensor_data_id": 1
+}
+
+PowerShell로도 테스트할 수 있음
+
+$body = @{
+    greenhouse_id = 1
+    temperature = 25.5
+    humidity = 65.0
+    light_intensity = 12000
+    soil_moisture = 42.0
+} | ConvertTo-Json
+
+Invoke-RestMethod `
+    -Uri "http://localhost:3000/api/sensor" `
+    -Method POST `
+    -ContentType "application/json" `
+    -Body $body
+
+DB에 실제로 저장되었는지 확인
+
+SELECT *
+FROM sensor_data
+ORDER BY measured_at DESC;
+
