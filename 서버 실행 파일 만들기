@@ -1,0 +1,26 @@
+const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
+
+const app = express();
+
+// 기본 설정
+app.use(cors());
+app.use(express.json());
+
+// 센서 API 연결
+const sensorRouter = require('./routes/sensor');
+
+app.use('/api/sensor', sensorRouter);
+
+// 서버 실행
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`스마트팜 서버 실행: http://localhost:${PORT}`);
+});
+
+
+
+//터미널 실행
+node server.js
